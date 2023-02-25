@@ -31,6 +31,14 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->match(['get', 'post'], '/', 'Auth::index');
 $routes->get('/home', 'Home::index', ['filter' => 'auth']);
+$routes->get('/image', 'Image::index', ['filter' => 'auth']);
+$routes->get('/audioPage', 'Audio::index', ['filter' => 'auth']); // /audio was giving error 403
+$routes->get('/videoPage', 'Video::index', ['filter' => 'auth']);    // /video was giving error 403
+$routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
+$routes->post('/AudioUpload', 'Audio::audioUpload', ['filter' => 'auth']);
+$routes->post('/VideoUpload', 'Video::videoUpload', ['filter' => 'auth']);
+$routes->get('/lastTenAudio', 'Home::getAudioInfo', ['filter' => 'auth']);
+$routes->get('/lastTenVideo', 'Home::getVideoInfo', ['filter' => 'auth']);
 $routes->get('/login', 'Auth::index');
 $routes->match(['get', 'post'], '/register', 'Auth::register');
 $routes->get('/logout', 'Auth::logout');

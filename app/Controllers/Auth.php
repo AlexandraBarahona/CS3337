@@ -40,6 +40,7 @@ class Auth extends BaseController
                 return redirect()->to('/home');
             }
         }
+        $data['title'] = 'Login';
         echo view('templates/header', $data);
         echo view('auth/login');
         echo view('templates/footer');
@@ -89,7 +90,7 @@ class Auth extends BaseController
                 return redirect()->to('/');
             }
         }
-
+        $data['title'] = 'Registration';
         echo view('templates/header', $data);
         echo view('auth/register');
         echo view('templates/footer');

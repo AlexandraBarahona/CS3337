@@ -28,5 +28,22 @@ body {
   height: 100%;
 }
 
+#home {
+  background-color: #E5E5F9;
+  height: 100%;
+}
 
+.link-primary {
+  text-decoration: none;
+}
+
+.card-data-container::-webkit-scrollbar {
+  display: none;
+}
+
+.card-data-container {
+  max-height: 300px; /* Set the maximum height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden;
+}
 
