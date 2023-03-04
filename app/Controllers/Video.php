@@ -7,18 +7,13 @@ use App\Models\VideoModel;
 
 class Video extends BaseController
 {
-    public function __construct() {
-        
-    }
-
     public function index()
     {
-        $db = db_connect();
-        $query = $db->query('SELECT * FROM video ORDER BY name;');
+        $model = new VideoModel();
         $data = [];
         $data['title'] = 'Video';
 
-        $files['video'] = $query->getResult();
+        $files['video'] = $model->getVideoQuery('SELECT * FROM video ORDER BY name;');
         echo view('templates/header', $data);
         echo view('content/video', $files);
         echo view('templates/footer');
@@ -46,7 +41,7 @@ class Video extends BaseController
                 'type' => $_FILES['file']['type'],
             ];
 
-            $model->save($videoData);
+            $model->saveVideo($videoData);
         }
   
     }

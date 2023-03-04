@@ -33,7 +33,8 @@ class Auth extends BaseController
             }
             else {
                 $model = new UserModel();
-                $user = $model->where('email', $this->request->getVar('email'))->first();
+                $user = $model->getUser($this->request->getVar('email'));
+                //$user = $model->where('email', $this->request->getVar('email'))->first();
                 
                 $this->setUserSession($user);
 
@@ -84,7 +85,7 @@ class Auth extends BaseController
                     'email' => $this->request->getVar('email'),
                     'password' => $this->request->getVar('password'),
                 ];
-                $model->save($newData);
+                $model->saveUser($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
                 return redirect()->to('/');

@@ -38,7 +38,10 @@
                         dictRemoveFile: "Remove",
                         dictCancelUpload: "Cancel",
                         dictDefaultMessage: "Drop files here to upload",
-                        acceptedFiles: ".mp4,.mov,.webm"
+                        acceptedFiles: ".mp4,.mov,.webm",
+                        init: function () {
+                        this.on("success", function (file) {
+                            location.reload();});}
                     };
                 </script>
             </div>

@@ -29,8 +29,13 @@ body {
 }
 
 #home {
-  background-color: #E5E5F9;
-  height: 100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  background-color: #E5E5F9; 
 }
 
 .link-primary {
@@ -46,4 +51,14 @@ body {
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden;
 }
+
+.dropzone .dz-preview .dz-error-message {
+  top: 150px!important;
+}
+
+
+
+
+
+
 

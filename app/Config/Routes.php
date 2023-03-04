@@ -37,8 +37,6 @@ $routes->get('/videoPage', 'Video::index', ['filter' => 'auth']);    // /video w
 $routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
 $routes->post('/AudioUpload', 'Audio::audioUpload', ['filter' => 'auth']);
 $routes->post('/VideoUpload', 'Video::videoUpload', ['filter' => 'auth']);
-$routes->get('/lastTenAudio', 'Home::getAudioInfo', ['filter' => 'auth']);
-$routes->get('/lastTenVideo', 'Home::getVideoInfo', ['filter' => 'auth']);
 $routes->get('/login', 'Auth::index');
 $routes->match(['get', 'post'], '/register', 'Auth::register');
 $routes->get('/logout', 'Auth::logout');

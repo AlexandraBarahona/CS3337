@@ -13,12 +13,11 @@ class Audio extends BaseController
 
     public function index()
     {
-        $db = db_connect();
-        $query = $db->query('SELECT * FROM audio ORDER BY name;');
+        $model = new AudioModel();
         $data = [];
         $data['title'] = 'Audio';
 
-        $files['audio'] = $query->getResult();
+        $files['audio'] = $model->getAllByName();
         echo view('templates/header', $data);
         echo view('content/audio', $files);
         echo view('templates/footer');
@@ -30,7 +29,6 @@ class Audio extends BaseController
     {
         // Set upload configuration
         helper(['form', 'url']);
-        $data = [];
 
         if (!empty($_FILES)) {
             $tempFile = $_FILES['file']['tmp_name'];
@@ -46,7 +44,7 @@ class Audio extends BaseController
                 'type' => $_FILES['file']['type'],
             ];
 
-            $model->save($audioData);
+            $model->saveAudio($audioData);
         }
   
     }

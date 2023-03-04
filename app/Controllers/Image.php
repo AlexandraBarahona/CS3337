@@ -8,17 +8,16 @@ use App\Models\ImageModel;
 class Image extends BaseController
 {
     public function __construct() {
-        
+    
     }
 
     public function index()
     {
-        $db = db_connect();
-        $query = $db->query('SELECT * FROM images ORDER BY name;');
+        $model = new ImageModel();
         $data = [];
         $data['title'] = 'Images';
 
-        $files['images'] = $query->getResult();
+        $files['images'] = $model->getAllByName() ;
         echo view('templates/header', $data);
         echo view('content/image', $files);
         echo view('templates/footer');
@@ -46,7 +45,10 @@ class Image extends BaseController
                 'type' => $_FILES['file']['type'],
             ];
 
-            $model->save($imgData);
+            $model->saveImage($imgData);
+
+            $files['images'] = $model->getAllByName();
+            
         }
   
     }

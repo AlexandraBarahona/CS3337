@@ -38,7 +38,10 @@
                         dictRemoveFile: "Remove",
                         dictCancelUpload: "Cancel",
                         dictDefaultMessage: "Drop files here to upload",
-                        acceptedFiles: ".mp3,.m4a,.aac"
+                        acceptedFiles: ".mp3,.m4a,.aac",
+                        init: function () {
+                        this.on("success", function (file) {
+                            location.reload();});}
                     };
                 </script>
             </div>
