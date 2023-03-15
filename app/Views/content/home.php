@@ -47,7 +47,7 @@
                             ?>
                                     <div class="card-data">
                                         <div class="row pb-2">
-                                            <div class="col-2"><embed src="<?php echo base_url('images/' . $row->name); ?>" type="image/png" width="30px" height="30px" /></div>
+                                            <div class="col-2"><embed src="<?php echo base_url('public/images/' . $row->name); ?>" type="image/png" width="30px" height="30px" /></div>
                                             <div class="col-5"><?php echo $row->name ?></div>
                                             <div class="col-5"><?php echo $row->type ?></div>
                                         </div>
@@ -87,7 +87,7 @@
                             ?>
                                     <div class="card-data">
                                         <div class="row pb-2">
-                                            <div class="col-2"><embed src="<?php echo base_url('audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
+                                            <div class="col-2"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                             <div class="col-5"><?php echo $row->name ?></div>
                                             <div class="col-5"><?php echo $row->type ?></div>
                                         </div>
@@ -127,7 +127,7 @@
                             ?>
                                     <div class="card-data">
                                         <div class="row pb-2">
-                                            <div class="col-2"><embed src="<?php echo base_url('video/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
+                                            <div class="col-2"><embed src="<?php echo base_url('public/video/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                             <div class="col-5"><?php echo $row->name ?></div>
                                             <div class="col-5"><?php echo $row->type ?></div>
                                         </div>

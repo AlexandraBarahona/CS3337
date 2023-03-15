@@ -33,7 +33,7 @@ class Image extends BaseController
 
         if (!empty($_FILES)) {
             $tempFile = $_FILES['file']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . '/images/';
+            $targetPath = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
             $targetFile = $targetPath . $_FILES['file']['name'];
 
             move_uploaded_file($tempFile, $targetFile);
@@ -50,6 +50,5 @@ class Image extends BaseController
             $files['images'] = $model->getAllByName();
             
         }
-  
     }
 }
