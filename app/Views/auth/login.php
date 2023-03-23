@@ -1,5 +1,5 @@
-<section class="vh-100 gradient-custom">
-    <div class="container-fluid py-5 h-100">
+<section class="vh-100 gradient-custom" id = "login">
+    <div class="container-fluid py-5 h-100" style="text-align: center;">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card" style="border-radius: 1rem">
@@ -26,12 +26,12 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <input type="submit" class="btn btn-info mt-2" value="Sign in">
+                                <input type="submit" class="btn btn-info btn-green mt-2" value="Sign in">
 
-                                <div class="col-12 col-sm-8 text-right">
-                                    <br>
-                                    <a href="/register">Create a new account.</a>
-                                </div>
+                                <button type="button" class="btn btn-info btn-green mt-2" onclick="location.href='/register'">
+                                    New User
+                                </button>
+
                             </div>
                         </form>
                     </div>

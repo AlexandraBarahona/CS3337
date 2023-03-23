@@ -1,27 +1,32 @@
-<section class="vh-100" id="home">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item active">
-                    <a class="nav-link text-dark" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/image">Image</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/audioPage">Audio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/videoPage">Video</a>
-                </li>
-            </ul>
-        </div>
-        <a class="nav-item mr-3 nav-link px-5" href="/logout">Logout</a>
-    </nav>
+    <?php
+$current_page = basename($_SERVER['REQUEST_URI'], ".php");
+?>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <img src="/cat.png" alt="Cat" style="width: 70px; height: auto;">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item <?php if($current_page == 'home') {echo 'active';} ?>">
+                <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item <?php if($current_page == 'image') {echo 'active';} ?>">
+                <a class="nav-link" href="/image">Image</a>
+            </li>
+            <li class="nav-item <?php if($current_page == 'audioPage') {echo 'active';} ?>">
+                <a class="nav-link" href="/audioPage">Audio</a>
+            </li>
+            <li class="nav-item <?php if($current_page == 'videoPage') {echo 'active';} ?>">
+                <a class="nav-link" href="videoPage">Video</a>
+            </li>
+        </ul>
+    </div>
+    <a class="nav-item nav-link px-5 " href="/logout">Logout</a>
+</nav>
+ <section class="vh-100" id="home">
 
     <div class="container-fluid pb-5">
         <div class="row pt-5">

@@ -1,47 +1,85 @@
-/* 
-@media (min-width:500px) {
-  .caption-2 .action-footer {
-      margin:0;
-      position: relative;
-      bottom: 0;
-      height: 10%;
-      width: 100%;
-  }
-}
-
-
-body {
-    background-color: #f2f2f2;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
- */
+/* BG colors of login and registration page */
 
 .gradient-custom {
-  background: #537FE7;
+  
+  background: #3b5323;
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgb(48, 124, 255,1), rgb(175, 212, 251, 1) repeat-x scroll 0% 0% #537FE7);
+  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
 
-  background: linear-gradient(to right, rgba(48, 124, 255,1), rgba(175, 212, 251, 1)) repeat-x scroll 0% 0% #537FE7; 
+  background: linear-gradient(to right, #e87eed, #08b6cd);
   height: 100%;
 }
-
+/* BG colors of home/media pages */
 #home {
-  position: absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  overflow:auto;
-  background-color: #E5E5F9; 
+  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+
+  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+}
+.navbar-light {
+  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+
+  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+}
+footer{
+  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+
+  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+}
+
+/* #login{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+} */
+
+/* NavBar Fonts */
+.navbar-nav .nav-link {
+  font-size: 30px; /* set the font size */
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+  color: white; 
+}
+.navbar-nav .active > .nav-link {
+  /* font-weight: bold; */
+  /* text-decoration: underline; */
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+  color: rgb(233, 243, 37); 
+
+}
+
+/* Change color of buttons (must be declared as btn-green) */
+.btn-green {
+  background: linear-gradient(to right, #e87eed, #08b6cd);
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 18px;
+  width: 200px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+
+/* Footer settings */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  height: 40px;
+  line-height: 50px;
+  max-height: 100px;
 }
 
 .link-primary {
   text-decoration: none;
 }
 
+/* Card Settings */
 .card-data-container::-webkit-scrollbar {
   display: none;
 }
@@ -52,13 +90,6 @@ body {
   overflow-x: hidden;
 }
 
-.dropzone .dz-preview .dz-error-message {
-  top: 150px!important;
+.form-control {
+  white-space: nowrap;
 }
-
-
-
-
-
-
-
