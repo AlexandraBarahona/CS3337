@@ -52,6 +52,14 @@ class Image extends BaseController
         }
     }
 
+    public function imageDownload() {
+        $model = new ImageModel();
+        $id = $this->request->getVar('id');
+        $path = $model->getImagePath($id);
+
+        return $this->response->download($path, null);
+    }
+
     public function edit() {
         if($this->request->getMethod() == 'post') {
             helper(['form', 'date']);

@@ -38,14 +38,17 @@ $routes->get('/videoPage', 'Video::index', ['filter' => 'auth']);    // /video w
 $routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
 $routes->get('/DeleteImage', 'Image::delete', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditImage', 'Image::edit', ['filter' => 'auth']);
+$routes->get('/DownloadImage', 'Image::imageDownload', ['filter' => 'auth']);
 
 $routes->post('/AudioUpload', 'Audio::audioUpload', ['filter' => 'auth']);
 $routes->get('/DeleteAudio', 'Audio::delete', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditAudio', 'Audio::edit', ['filter' => 'auth']);
+$routes->get('/DownloadAudio', 'Audio::audioDownload', ['filter' => 'auth']);
 
 $routes->post('/VideoUpload', 'Video::videoUpload', ['filter' => 'auth']);
 $routes->get('/DeleteVideo', 'Video::delete', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditVideo', 'Video::edit', ['filter' => 'auth']);
+$routes->get('/DownloadVideo', 'Video::videoDownload', ['filter' => 'auth']);
 
 $routes->get('/login', 'Auth::index');
 $routes->match(['get', 'post'], '/register', 'Auth::register');

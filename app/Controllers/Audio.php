@@ -52,6 +52,14 @@ class Audio extends BaseController
         }
     }
 
+    public function audioDownload() {
+        $model = new AudioModel();
+        $id = $this->request->getVar('id');
+        $path = $model->getAudioPath($id);
+
+        return $this->response->download($path, null);
+    }
+
     public function edit() {
         if($this->request->getMethod() == 'post') {
             helper(['form', 'date']);
@@ -68,6 +76,7 @@ class Audio extends BaseController
             return redirect()->to('/audioPage');
         }
     }
+
 
     public function delete() {
         helper(['form', 'url', 'upload']);

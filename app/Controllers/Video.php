@@ -49,6 +49,14 @@ class Video extends BaseController
         }
     }
 
+    public function videoDownload() {
+        $model = new VideoModel();
+        $id = $this->request->getVar('id');
+        $path = $model->getVideoPath($id);
+
+        return $this->response->download($path, null);
+    }
+
     public function edit() {
         if($this->request->getMethod() == 'post') {
             helper(['form', 'date']);

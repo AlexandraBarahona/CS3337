@@ -45,7 +45,9 @@
                             <div class="card-data">
                                 <div class="row pb-2">
                                     <div class="col-2"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
-                                    <div class="col-4"><?php echo $row->name ?></div>
+                                    <div class="col-4">
+                                        <a href="DownloadAudio?id=<?=$row->id?>"><?php echo $row->name ?></a> 
+                                    </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
                                         <a href="/DeleteAudio?id=<?=$row->id?>">Delete</a>
