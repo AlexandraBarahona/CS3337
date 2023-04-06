@@ -46,11 +46,11 @@
                                 <div class="row pb-2">
                                     <div class="col-2"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                     <div class="col-4">
-                                        <a href="DownloadAudio?id=<?=$row->id?>"><?php echo $row->name ?></a> 
+                                        <a href="<?=base_url('')?>/DownloadAudio?id=<?=$row->id?>"><?php echo $row->name ?></a> 
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a href="/DeleteAudio?id=<?=$row->id?>">Delete</a>
+                                        <a href="<?=base_url()?>/DeleteAudio?id=<?=$row->id?>">Delete</a>
                                         <button class="edit-btn">Edit</button>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form action="/EditAudio" method="post" class="form">
+                                            <form action="<?=base_url('/EditAudio')?>" method="post" class="form">
                                                 <div class="form-group">
                                                     <label for="inputName">Name</label>
                                                     <input type="hidden" name="id" value="<?=$row->id?>">

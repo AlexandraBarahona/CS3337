@@ -17,6 +17,9 @@ class Auth extends BaseController
         helper(['form']);
 
         if($this->request->getMethod() == 'post') {
+            ?>
+            <script>console.log('true')</script>
+            <?php
             $rules = [
                 'email' => 'required|min_length[4]|max_length[100]|valid_email',
                 'password' => 'required|min_length[4]|max_length[50]|validateUser[email,password]',

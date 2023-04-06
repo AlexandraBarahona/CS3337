@@ -6,7 +6,7 @@
                     <div class="m-4 m-md-5 pb-1">
                         <h4>Sign Up</h4>
                         <hr>
-                        <form action="/register" 
+                        <form action="<?=base_url('/register')?>"
                             method="post"
                             class="form"> 
                             <div class="form-group">
@@ -50,7 +50,7 @@
 
                               <div class="row d-flex justify-content-center">
                                 <input type="submit" class="btn btn-info btn-green mt-4 mx-auto" value="Sign Up">
-                                    <button type="button" class="btn btn-info btn-green mt-4 mx-auto" onclick="location.href='/login'">
+                                    <button type="button" class="btn btn-info btn-green mt-4 mx-auto" onclick="location.href='<?=base_url()?>'">
                                     Login to Account
                                     </button>
                               </div>

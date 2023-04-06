@@ -93,8 +93,16 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
+/*
+ |--------------------------------------------------------------------------
+ | Dynamic BaseURL
+ |--------------------------------------------------------------------------
+ |
+ | Create a Dynamic BaseURL for use in App.php
+ | 
+ */
 $host = $_SERVER['HTTP_HOST'];
-$host .= str_replace(basename($_SERVER['SCRIPT_NAME']),"", $_SERVER['SCRIPT_NAME']);
+$host .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $http_https = isset($_SERVER['HTTPS']) ? "https://" : "http://";
-$baseURL = $http_https . $host; 
+$baseURL = $http_https . $host;
 define('BASE_URL', $baseURL);

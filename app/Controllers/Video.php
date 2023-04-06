@@ -25,23 +25,22 @@ class Video extends BaseController
     {
         // Set upload configuration
         helper(['form', 'url', 'upload', 'date']);
-        $data = [];
+
+        $file = $this->request->getFile('file');
+        $targetPath = ROOTPATH . 'public/video/';
 
         if (!empty($_FILES)) {
-            $tempFile = $_FILES['file']['tmp_name'];
-            $targetPath = ROOTPATH . 'public/video/';
-            $targetFile = $targetPath . rename_video(pathinfo($_FILES['file']['name']));
-
-            move_uploaded_file($tempFile, $targetFile);
-
+            $targetFile = $targetPath . $file->getName();
+            $newName = rename_video(pathinfo($targetFile));
+            $file->move($targetPath, $newName);
             $model = new VideoModel();
-            $file = pathinfo($targetFile);
+
 
             $videoData = [
-                'name' => $_FILES['file']['name'],
-                'type' => $_FILES['file']['type'],
-                'path' => $targetFile,
-                'caption' => $file['basename'],
+                'name' => $file->getName(),
+                'type' => $file->getClientMimeType(),
+                'path' => $targetPath . $newName,
+                'caption' => $file->getName(),
                 'updated_at' => date('Y-m-d H:i:s', now()),
             ];
 
@@ -70,7 +69,7 @@ class Video extends BaseController
 
             $model->saveVideo($vidData);
             
-            return redirect()->to('/videoPage');
+            return redirect()->to('/video');
         }
     }
 
@@ -84,7 +83,7 @@ class Video extends BaseController
         unlink($path);
         $model->deleteVideo($id);
 
-        return redirect()->to('/videoPage');
+        return redirect()->to('/video');
     }
 
 }

@@ -32,20 +32,20 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto ">
             <li class="nav-item <?php if($current_page == 'home') {echo 'active';} ?>">
-                <a class="nav-link" href="/home">Home</a>
+                <a class="nav-link" href="<?=base_url('/home')?>">Home</a>
             </li>
             <li class="nav-item <?php if($current_page == 'image') {echo 'active';} ?>">
-                <a class="nav-link" href="/image">Image</a>
+                <a class="nav-link" href="<?=base_url('image')?>">Image</a>
             </li>
-            <li class="nav-item <?php if($current_page == 'audioPage') {echo 'active';} ?>">
-                <a class="nav-link" href="/audioPage">Audio</a>
+            <li class="nav-item <?php if($current_page == 'audio') {echo 'active';} ?>">
+                <a class="nav-link" href="<?=base_url('/audio')?>">Audio</a>
             </li>
-            <li class="nav-item <?php if($current_page == 'videoPage') {echo 'active';} ?>">
-                <a class="nav-link" href="videoPage">Video</a>
+            <li class="nav-item <?php if($current_page == 'video') {echo 'active';} ?>">
+                <a class="nav-link" href="<?=base_url('/video')?>">Video</a>
             </li>
         </ul>
     </div>
-    <a class="nav-item nav-link px-5 " href="/logout">Logout</a>
+    <a class="nav-item nav-link px-5 " href="<?=base_url('/logout')?>">Logout</a>
 </nav>
 
 <?php endif; ?>

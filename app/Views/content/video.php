@@ -45,11 +45,11 @@
                                 <div class="row pb-2">
                                     <div class="col-2"><embed src="<?php echo base_url('public/video/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                     <div class="col-4">
-                                        <a href="/DownloadVideo?id=<?=$row->id?>"><?php echo $row->name ?></a>
+                                        <a href="<?=base_url()?>/DownloadVideo?id=<?=$row->id?>"><?php echo $row->name ?></a>
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a href="DeleteVideo?id=<?=$row->id?>">Delete</a>
+                                        <a href="<?=base_url()?>/DeleteVideo?id=<?=$row->id?>">Delete</a>
                                         <button class="edit-btn">Edit</button>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form action="/EditVideo" method="post" class="form">
+                                            <form action="<?=base_url('EditVideo')?>" method="post" class="form">
                                                 <div class="form-group">
                                                     <label for="inputName">Name</label>
                                                     <input type="hidden" name="id" value="<?=$row->id?>">

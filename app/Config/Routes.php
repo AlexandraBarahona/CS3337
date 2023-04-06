@@ -29,11 +29,12 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->match(['get', 'post'], '/', 'Auth::index');
+$routes->get('/', 'Auth::index');
+$routes->post('/login', 'Auth::index');
 $routes->get('/home', 'Home::index', ['filter' => 'auth']);
 $routes->get('/image', 'Image::index', ['filter' => 'auth']);
-$routes->get('/audioPage', 'Audio::index', ['filter' => 'auth']); // /audio was giving error 403
-$routes->get('/videoPage', 'Video::index', ['filter' => 'auth']);    // /video was giving error 403
+$routes->get('/audio', 'Audio::index', ['filter' => 'auth']); // /audio was giving error 403
+$routes->get('/video', 'Video::index', ['filter' => 'auth']);    // /video was giving error 403
 
 $routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
 $routes->get('/DeleteImage', 'Image::delete', ['filter' => 'auth']);

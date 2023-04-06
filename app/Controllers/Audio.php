@@ -30,21 +30,21 @@ class Audio extends BaseController
         // Set upload configuration
         helper(['form', 'url', 'upload', 'date']);
 
-        if (!empty($_FILES)) {
-            $tempFile = $_FILES['file']['tmp_name'];
-            $targetPath = ROOTPATH . 'public/audio/';
-            $targetFile = $targetPath . rename_audio(pathinfo($_FILES['file']['name']));
+        $file = $this->request->getFile('file');
+        $targetPath = ROOTPATH . 'public/audio/';
 
-            move_uploaded_file($tempFile, $targetFile);
-
+        if($file->isValid() && !$file->hasMoved()) {
+            $targetFile = $targetPath . $file->getName();
+            $newName = rename_audio(pathinfo($targetFile));
+            $file->move($targetPath, $newName);
             $model = new AudioModel();
-            $file = pathinfo($targetFile);
+            
 
             $audioData = [
-                'name' => $_FILES['file']['name'],
-                'type' => $_FILES['file']['type'],
-                'path' => $targetFile,
-                'caption' => $file['basename'],
+                'name' => $file->getName(),
+                'type' => $file->getClientMimeType(),
+                'path' => $targetPath . $newName,
+                'caption' => $file->getName(),
                 'updated_at' => date('Y-m-d H:i:s', now()),
             ];
 
@@ -73,7 +73,7 @@ class Audio extends BaseController
 
             $model->saveAudio($audData);
             
-            return redirect()->to('/audioPage');
+            return redirect()->to('/audio');
         }
     }
 
@@ -88,6 +88,6 @@ class Audio extends BaseController
         unlink($path);
         $model->deleteAudio($id);
 
-        return redirect()->to('/audioPage');
+        return redirect()->to('/audio');
     }
 }

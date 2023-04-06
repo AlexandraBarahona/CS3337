@@ -17,15 +17,12 @@
                         acceptedFiles: ".jpg,.png,.gif",
                         init: function () {
                         this.on("success", function (file) {
-                            location.reload();});}
+                            location.reload();});},
                     }
                 </script>
             </div>
         </div>
 
-        <?//php if(isset($editForm) && $editForm): ?>
-      
-        <?//php endif; ?>
 
         <div class="container col-8 offset-2 pt-5 pb-5">
             <div class="card">
@@ -49,11 +46,11 @@
                                 <div class="row pb-2">
                                     <div class="col-2"><embed src="<?php echo base_url('public/images/' . $row->caption); ?>" type="<?php echo $row->type; ?>" width="30px" height="30px" /></div>
                                     <div class="col-4">
-                                        <a href="/DownloadImage?id=<?=$row->id?>"><?php echo $row->name ?></a>
+                                        <a href="<?=base_url()?>/DownloadImage?id=<?=$row->id?>"><?php echo $row->name ?></a>
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a href="/DeleteImage?id=<?=$row->id?>">Delete</a>
+                                        <a href="<?=base_url()?>/DeleteImage?id=<?=$row->id?>">Delete</a>
                                         <button class="edit-btn">Edit</button>
                                     </div>
                                 </div>
@@ -70,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form action="/EditImage" method="post" class="form">
+                                            <form action="<?=base_url('EditImage')?>" method="post" class="form">
                                                 <div class="form-group">
                                                     <label for="inputName">Name</label>
                                                     <input type="hidden" name="id" value="<?=$row->id?>">

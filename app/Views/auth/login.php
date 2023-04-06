@@ -11,7 +11,7 @@
                                 <?= session()->get('success') ?>
                             </div>
                         <?php endif; ?>
-                        <form action="/" method="post" class="form">
+                        <form action="<?=base_url('/login')?>" method="post" class="form">
                             <?= csrf_field() ?>
                             <div class="form-group">
                                 <input type="text" class="form-control mb-2" name="email" placeholder="Email Address" value="<?= set_value('email') ?>">
@@ -28,7 +28,7 @@
                                 <div class="row d-flex justify-content-center">   
                                    <input type="submit" class="btn btn-info btn-green mt-4 mx-auto" value="Sign in">
                                     
-                                    <button type="button" class="btn btn-info btn-green mt-4 mx-auto" onclick="location.href='/register'">
+                                    <button type="button" class="btn btn-info btn-green mt-4 mx-auto" onclick="location.href='<?=base_url('/register')?>'">
                                         New User
                                     </button>
                     

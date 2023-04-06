@@ -26,30 +26,27 @@ class Image extends BaseController
     {
         // Set upload configuration
         helper(['form', 'url', 'upload', 'date']);
-        $data = [];
 
-        if (!empty($_FILES)) {
-            $tempFile = $_FILES['file']['tmp_name'];
-            $targetPath = ROOTPATH . 'public/images/'; 
-            $targetFile = $targetPath . rename_image(pathinfo($_FILES['file']['name'])); 
+        $file = $this->request->getFile('file');
+        $targetPath = ROOTPATH . 'public/images/'; 
 
-            move_uploaded_file($tempFile, $targetFile);
-
+        if($file->isValid() && !$file->hasMoved()) {
+            $targetFile = $targetPath.$file->getName();
+            $newName = rename_image(pathinfo($targetFile));
+            $file->move($targetPath, $newName);
             $model = new ImageModel();
-            $file = pathinfo($targetFile);
-
-
+            
+    
             $imgData = [
-                'name' => $_FILES['file']['name'],
-                'type' => $_FILES['file']['type'],
-                'path' => $targetFile,
-                'caption' => $file['basename'],
+                'name' => $file->getName(),
+                'type' => $file->getClientMimeType(),
+                'path' => $targetPath . $newName,
+                'caption' => $file->getName(),
                 'updated_at' => date('Y-m-d H:i:s', now()),
             ];
 
             $model->saveImage($imgData);
-            
-        }
+        } 
     }
 
     public function imageDownload() {
