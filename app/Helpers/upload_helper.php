@@ -41,4 +41,25 @@ function rename_video($name) {
     return $new_filename . '.' . $file_extension;
 }
 
+function get_time_from_seconds($totalSeconds) {
+    $totalSeconds = intval($totalSeconds);
+    $time = [
+        'hours' => 0,
+        'minutes' => 0,
+        'seconds' => 0,
+    ];
+    $time['seconds'] = $totalSeconds % 60;
+
+    $totalMinutes = floor($totalSeconds / 60);
+
+    $time['minutes'] = ($totalMinutes > 60) ? $totalMinutes % 60 : $totalMinutes;
+    
+    $totalHours = floor($totalMinutes / 60);
+
+    $time['hours'] = $totalHours;
+
+    return $time;
+
+}
+
 ?>

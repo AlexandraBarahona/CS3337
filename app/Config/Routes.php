@@ -33,9 +33,9 @@ $routes->get('/', 'Auth::index');
 $routes->post('/login', 'Auth::index');
 $routes->get('/home', 'Home::index', ['filter' => 'auth']);
 $routes->get('/image', 'Image::index', ['filter' => 'auth']);
-$routes->get('/audio', 'Audio::index', ['filter' => 'auth']); // /audio was giving error 403
-$routes->get('/video', 'Video::index', ['filter' => 'auth']);    // /video was giving error 403
-
+$routes->get('/audio', 'Audio::index', ['filter' => 'auth']); 
+$routes->get('/video', 'Video::index', ['filter' => 'auth']); 
+  
 $routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
 $routes->get('/DeleteImage', 'Image::delete', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditImage', 'Image::edit', ['filter' => 'auth']);

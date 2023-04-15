@@ -6,7 +6,7 @@
     <script src="public/javascript/dropzone.min.js"></script>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <script src="public/javascript/jquery-3.5.1.slim.min.js"></script>
-    <script src="public/javascript/bootstrap.bundle.min.js"></script> 
+    <script src="public/javascript/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="public/css/dropzone.min.css" /> 
     <link rel="stylesheet" type="text/css" href="public/css/style.css?version=<%= Common.GetVersion%" /> 
     <link rel="shortcut icon" href="public/cat.png" type="image/x-icon">

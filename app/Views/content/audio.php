@@ -3,6 +3,7 @@
         <div class="row pt-5 justify-content-center">
             <div class="col-10">
                 <form action="<?php echo base_url(); ?>/AudioUpload" method="post" class="dropzone" id="audioupload">
+                <input type="hidden" id="fileDuration" name="fileDuration" value="">
                 </form>
 
                 <script type="text/javascript">
@@ -14,17 +15,47 @@
                         dictRemoveFile: "Remove",
                         dictCancelUpload: "Cancel",
                         dictDefaultMessage: "Drop files here to upload",
-                        acceptedFiles: ".mp3,.m4a,.aac",
+                        acceptedFiles: "audio/*, .webm",
+                        autoProcessQueue: false,
                         init: function () {
-                        this.on("success", function (file) {
-                            location.reload();});}
+                            var dropzoneInstance = this;
+                            this.on("addedfile", function(file) {
+                                
+                                var audioElement = new Audio();
+                                audioElement.src = URL.createObjectURL(file);
+                                var fileDuration = 0; // Set initial duration to 0
+
+                                audioElement.addEventListener('error', function() {
+                                    // I use this just in case the user uploads an empty file
+                                    // or a file that has the correct extension but not in the
+                                    // correct format
+                                    fileDuration = audioElement.duration || 0;
+                                    console.log("element error");
+                                    
+                                    document.getElementById("fileDuration").value = fileDuration;
+                                    dropzoneInstance.processQueue(); 
+                                });
+
+                                audioElement.addEventListener('loadedmetadata', function() {
+                                    // getting the duration of the file
+                                    fileDuration = audioElement.duration || 0;
+                                    
+                                    document.getElementById("fileDuration").value = fileDuration;
+                                    dropzoneInstance.processQueue();    
+                                });
+                            }); 
+
+
+                            this.on("success", function (file) {
+                                location.reload();});
+                        }
                     };
                 </script>
             </div>
         </div>
 
 
-        <div class="container col-8 offset-2 pt-5 pb-5">
+        <div class="container col-10 offset-1 pt-5 pb-5">
             <div class="card">
                 <div class="card-header">
                     Audio Files
@@ -32,9 +63,11 @@
                 <div class="card-body">
                     <div class="card-title">
                         <div class="row border-bottom pb-2">
-                            <div class="col-2"><strong>Icon</strong></div>
-                            <div class="col-4"><strong>Name</strong></div>
-                            <div class="col-4"><strong>Type</strong></div>
+                            <div class="col-1"><strong>Icon</strong></div>
+                            <div class="col-5"><strong>Name</strong></div>
+                            <div class="col-2"><strong>Duration</strong></div>
+                            <div class="col-2"><strong>Type</strong></div>
+                            
                         </div>
                     </div>
                     <div class="card-data-container">
@@ -44,14 +77,15 @@
                         ?>  
                             <div class="card-data">
                                 <div class="row pb-2">
-                                    <div class="col-2"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
-                                    <div class="col-4">
+                                    <div class="col-1"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
+                                    <div class="col-5">
                                         <a href="<?=base_url('')?>/DownloadAudio?id=<?=$row->id?>"><?php echo $row->name ?></a> 
                                     </div>
-                                    <div class="col-4"><?php echo $row->type ?></div>
+                                    <div class="col-2"><?=$row->duration?></div>
+                                    <div class="col-2"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a href="<?=base_url()?>/DeleteAudio?id=<?=$row->id?>">Delete</a>
-                                        <button class="edit-btn">Edit</button>
+                                        <a class ="btn" href="<?=base_url()?>/DeleteAudio?id=<?=$row->id?>">Delete</a>
+                                        <button class="btn edit-btn">Edit</button>
                                     </div>
                                 </div>
                             </div>   

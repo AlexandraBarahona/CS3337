@@ -27,7 +27,7 @@ class Audio extends BaseController
 
     public function audioUpload()
     {
-        // Set upload configuration
+        // The upload helper is a custom helper that can be found in the helpers folder
         helper(['form', 'url', 'upload', 'date']);
 
         $file = $this->request->getFile('file');
@@ -39,6 +39,9 @@ class Audio extends BaseController
             $file->move($targetPath, $newName);
             $model = new AudioModel();
             
+            $durationInSeconds = $this->request->getVar('fileDuration');
+            $time = get_time_from_seconds($durationInSeconds);
+            $duration = sprintf('%02d:%02d:%02d', $time['hours'], $time['minutes'], $time['seconds']);
 
             $audioData = [
                 'name' => $file->getName(),
@@ -46,9 +49,12 @@ class Audio extends BaseController
                 'path' => $targetPath . $newName,
                 'caption' => $file->getName(),
                 'updated_at' => date('Y-m-d H:i:s', now()),
+                'duration' => $duration,
             ];
 
             $model->saveAudio($audioData);
+
+           
         }
     }
 

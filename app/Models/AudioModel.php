@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class AudioModel extends Model {
     protected $table = 'audio';
-    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at'];
+    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at', 'duration'];
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
     protected $db;
