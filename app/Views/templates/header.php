@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="public/css/dropzone.min.css" /> 
     <link rel="stylesheet" type="text/css" href="public/css/style.css?version=<%= Common.GetVersion%" /> 
     <link rel="shortcut icon" href="public/cat.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <title><?php echo $title; ?></title>
 </head>
 <body>
@@ -45,6 +48,14 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
             </li>
         </ul>
     </div>
+    <form action="<?=base_url()?>/search" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control" name="query" placeholder="Search..." aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </form>
     <a class="nav-item nav-link px-5 " href="<?=base_url('/logout')?>">Logout</a>
 </nav>
 

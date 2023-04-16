@@ -82,8 +82,8 @@
                                     <div class="col-2"><?=$row->duration?></div>
                                     <div class="col-2"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a class="btn" href="<?=base_url()?>/DeleteVideo?id=<?=$row->id?>">Delete</a>
-                                        <button class="btn edit-btn">Edit</button>
+                                        <a class="btn btn-sm btn-primary" href="<?=base_url()?>/DeleteVideo?id=<?=$row->id?>">Delete</a>
+                                        <button class="btn btn-sm btn-primary edit-btn">Edit</button>
                                     </div>
                                 </div>
                             </div> 

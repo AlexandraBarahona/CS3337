@@ -50,8 +50,8 @@
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a href="<?=base_url()?>/DeleteImage?id=<?=$row->id?>">Delete</a>
-                                        <button class="edit-btn">Edit</button>
+                                        <a class="btn btn-primary btn-sm" href="<?=base_url()?>/DeleteImage?id=<?=$row->id?>">Delete</a>
+                                        <button class="btn btn-primary btn-sm  edit-btn">Edit</button>
                                     </div>
                                 </div>
                             </div>

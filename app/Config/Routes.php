@@ -51,6 +51,8 @@ $routes->get('/DeleteVideo', 'Video::delete', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditVideo', 'Video::edit', ['filter' => 'auth']);
 $routes->get('/DownloadVideo', 'Video::videoDownload', ['filter' => 'auth']);
 
+$routes->get('/search', 'Search::index', ['filter' => 'auth']);
+
 $routes->get('/login', 'Auth::index');
 $routes->match(['get', 'post'], '/register', 'Auth::register');
 $routes->get('/logout', 'Auth::logout');

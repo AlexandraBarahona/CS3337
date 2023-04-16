@@ -53,5 +53,29 @@ class ImageModel extends Model {
         return $image['path'];
     }
 
+    public function searchImages($query) {
+        $query = $this->db->escapeString($query);
+
+        $words = null;
+        if(str_contains($query, " ")) {
+            $words = explode(" ", $query);
+        }
+
+        $sqlQuery = "SELECT *, 'N/A' as duration, 'Image' as filetype FROM " . $this->table .
+                     " WHERE name LIKE '%" . $query . "%'" ;
+
+        if(!empty($words)) {
+            foreach($words as $word)
+            $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+        }
+
+        $sqlQuery = $sqlQuery . ';';
+
+        $result = $this->query($sqlQuery);
+
+        return $result->getResult();
+        
+    }
+
  }
 ?>

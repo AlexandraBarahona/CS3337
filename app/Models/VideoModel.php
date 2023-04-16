@@ -49,5 +49,28 @@ class VideoModel extends Model {
         $video = $this->where('id', $id)->first();
         return $video['path'];
     }
+
+    public function searchVideos($query) {
+        $query = $this->db->escapeString($query);
+
+        $words = null;
+        if(str_contains($query, " ")) {
+            $words = explode(" ", $query);
+        }
+
+        $sqlQuery = "SELECT *, 'Video' as filetype FROM " . $this->table .
+                     " WHERE name LIKE '%" . $query . "%'" ;
+
+        if(!empty($words)) {
+            foreach($words as $word)
+            $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+        }
+
+        $sqlQuery = $sqlQuery . ';';
+
+        $result = $this->query($sqlQuery);
+
+        return $result->getResult();
+    }
 }
 ?>

@@ -48,5 +48,28 @@ class AudioModel extends Model {
         $audio = $this->where('id', $id)->first();
         return $audio['path'];
     }
+
+    public function searchAudios($query) {
+        $query = $this->db->escapeString($query);
+
+        $words = null;
+        if(str_contains($query, " ")) {
+            $words = explode(" ", $query);
+        }
+
+        $sqlQuery = "SELECT *, 'Audio' as filetype FROM " . $this->table .
+                     " WHERE name LIKE '%" . $query . "%'" ;
+
+        if(!empty($words)) {
+            foreach($words as $word)
+            $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+        }
+
+        $sqlQuery = $sqlQuery . ';';
+
+        $result = $this->query($sqlQuery);
+
+        return $result->getResult();
+    }
 }
 ?>
