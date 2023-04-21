@@ -46,16 +46,36 @@
                                 <div class="row pb-2">
                                     <div class="col-2"><embed src="<?php echo base_url('public/images/' . $row->caption); ?>" type="<?php echo $row->type; ?>" width="30px" height="30px" /></div>
                                     <div class="col-4">
-                                        <a href="<?=base_url()?>/DownloadImage?id=<?=$row->id?>"><?php echo $row->name ?></a>
+                                        <a class="show-media" href="#" id="<?=$index?>"><?php echo $row->name ?></a>
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a class="btn btn-primary btn-sm" href="<?=base_url()?>/DeleteImage?id=<?=$row->id?>">Delete</a>
-                                        <button class="btn btn-primary btn-sm  edit-btn">Edit</button>
+                                        <a class="btn btn-primary btn-sm del-btn" href="<?=base_url('Image/delete/'.$row->id)?>">Delete</a>
+                                        <button class="btn btn-primary btn-sm edit-btn">Edit</button>
                                     </div>
                                 </div>
                             </div>
                             
+                            <!-- HTML for the image popup -->
+                            <div class="media-popup" id="media-popup-<?=$index?>">
+                                <div class="media-popup-content">
+                                    <div class="card">
+                                        <div class="card-header">
+                                        <span class="close-popup"  >&times;</span>
+                                            <div class="row">
+                                                <h5><?=$row->name?></h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-body" style="max-height: 60%">
+                                            <div class="embed-responsive">
+                                                <img class="media" src="public/images/<?=$row->caption?>">
+                                            </div>
+                                            <p>Description:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
                             <!-- HTML for the edit popup -->
                             <div class="edit-popup" id="edit-popup<?=$index?>">
                                 <div class="edit-popup-content">
@@ -107,8 +127,18 @@
       });
 
       // When the close button is clicked, hide the popup
-      $(".close-edit-popup").click(function(){
+      $(".close-popup").click(function(){
          $(this).closest(".edit-popup").hide();
+         $(this).closest(".media-popup").hide();
       });
+
+      document.addEventListener('click', function(event) {
+        var target = event.target;
+        if(target.classList.contains('show-media')) {
+            var index = target.getAttribute('id');
+            $('.media-popup').eq(index).show();
+        }
+      });
+
    });
 </script>

@@ -79,21 +79,20 @@ class Audio extends BaseController
 
             $model->saveAudio($audData);
             
-            return redirect()->to('/audio');
+            return redirect()->to(previous_url());
         }
     }
 
 
-    public function delete() {
+    public function delete($id) {
         helper(['form', 'url', 'upload']);
         $model = new AudioModel();
 
-        $id = $this->request->getVar('id');
         $path = $model->getAudioPath($id);
         
         unlink($path);
         $model->deleteAudio($id);
 
-        return redirect()->to('/audio');
+        return redirect()->to(previous_url());
     }
 }

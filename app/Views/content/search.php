@@ -33,23 +33,54 @@
                             <div class="row pb-2">
                                 <div class="col-1"><embed src="<?=$fileData['icon']?>" type="<?=$fileData['iconType']?>" width="30px" height="30px" /></div>
                                 <div class="col-5">
-                                    <a href="<?=base_url()?>/Download<?=$row->filetype?>?id=<?=$row->id?>"><?php echo $row->name ?></a>
+                                    <a class="show-media" href="#" id="<?=$index?>"><?php echo $row->name ?></a>
                                 </div>
                                 <div class="col-2"><?=$row->duration?></div>
                                 <div class="col-2"><?php echo $row->type ?></div>
                                 <div class="col-2">
-                                    <a class="btn btn-primary btn-sm" href="<?=base_url()?>/Delete<?=$row->filetype?>?id=<?=$row->id?>">Delete</a>
+                                    <a class="btn btn-primary btn-sm" href="<?=base_url($row->filetype)?>/delete/<?=$row->id?>">Delete</a>
                                     <button class="btn btn-primary btn-sm edit-btn">Edit</button>
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- HTML for the media popup -->
+                        <div class="media-popup" id="media-popup-<?=$index?>">
+                            <div class="media-popup-content">
+                                <div class="card">
+                                    <div class="card-header">
+                                    <span class="close-popup"  >&times;</span>
+                                        <div class="row">
+                                            <h5><?=$row->name?></h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="max-height: 60%">
+                                        <?php if($row->filetype == 'Image'){ ?>
+                                        <div class="embed-responsive">
+                                            <img class="media" src="public/images/<?=$row->caption?>">
+                                        </div>
+                                         <?php }
+                                         if($row->filetype == 'Audio') {?>
+                                            <audio class="w-100" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
+                                         <?php }
+                                         if($row->filetype == 'Video') {?>
+                                            <div class="embed-responsive">
+                                                <video class="media" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
+                                            </div>
+                                        <?php } ?>
+                                        <p>Description:</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
                         
                         <!-- HTML for the edit popup -->
                         <div class="edit-popup" id="edit-popup<?=$index?>">
                             <div class="edit-popup-content">
                                 <div class="card">
                                     <div class="card-header">
-                                        <span class="close-edit-popup">&times;</span>
+                                        <span class="close-popup">&times;</span>
                                         <div class="row">
                                             <h5>Edit File</h5>
                                         </div>
@@ -90,13 +121,21 @@
       // When the button is clicked, show the popup
       $(".edit-btn").click(function(){
         var index = $(".edit-btn").index($(this));
-        console.log(index);
          $(".edit-popup").eq(index).show();
       });
 
       // When the close button is clicked, hide the popup
-      $(".close-edit-popup").click(function(){
+      $(".close-popup").click(function(){
          $(this).closest(".edit-popup").hide();
+         $(this.closest(".media-popup")).hide();
+      });
+
+      document.addEventListener('click', function(event) {
+        var target = event.target;
+        if(target.classList.contains('show-media')) {
+            var index = target.getAttribute('id');
+            $('.media-popup').eq(index).show();
+        }
       });
    });
 </script>

@@ -73,21 +73,20 @@ class Video extends BaseController
 
             $model->saveVideo($vidData);
             
-            return redirect()->to('/video');
+            return redirect()->to(previous_url());
         }
     }
 
-    public function delete() {
+    public function delete($id) {
         helper(['form', 'url', 'upload']);
         $model = new VideoModel();
 
-        $id = $this->request->getVar('id');
         $path = $model->getVideoPath($id);
 
         unlink($path);
         $model->deleteVideo($id);
 
-        return redirect()->to('/video');
+        return redirect()->to(previous_url());
     }
 
 }

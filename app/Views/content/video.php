@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="container col-10 offset-1 pt-5 pb-5">
+        <div class="col-10 offset-1 pt-5 pb-5">
             <div class="card">
                 <div class="card-header">
                     Video Files
@@ -77,22 +77,48 @@
                                 <div class="row pb-2">
                                     <div class="col-1"><embed src="<?php echo base_url('public/video/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                     <div class="col-5">
-                                        <a href="<?=base_url()?>/DownloadVideo?id=<?=$row->id?>"><?php echo $row->name ?></a>
+                                        <a class="show-media" href="#" id="<?=$index?>"><?php echo $row->name ?></a>
                                     </div>
                                     <div class="col-2"><?=$row->duration?></div>
                                     <div class="col-2"><?php echo $row->type ?></div>
                                     <div class="col-2">
-                                        <a class="btn btn-sm btn-primary" href="<?=base_url()?>/DeleteVideo?id=<?=$row->id?>">Delete</a>
+                                        <a class="btn btn-sm btn-primary" href="<?=base_url('/Video/delete/'.$row->id)?>">Delete</a>
                                         <button class="btn btn-sm btn-primary edit-btn">Edit</button>
                                     </div>
                                 </div>
                             </div> 
 
+
+                                <!-- HTML for the video player popup -->
+                            <div class="media-popup" id="media-popup-<?=$index?>">
+                                <div class="media-popup-content">
+                                    <div class="card">
+                                        <div class="card-header">
+                                        <span class="close-popup"  >&times;</span>
+                                            <div class="row">
+                                                <h5>Now Playing: <?=$row->name?></h5>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="card-body" style="max-height: 60%">
+                                            <div class="embed-responsive">
+                                                <video class="media" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
+                                            </div>
+                                            <p>
+                                                Description:
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <!-- HTML for edit popup -->
+
                             <div class="edit-popup" id="edit-popup<?=$index?>">
                                 <div class="edit-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                            <span class="close-edit-popup">&times;</span>
+                                            <span class="close-popup">&times;</span>
                                             <div class="row">
                                                 <h5>Edit Video</h5>
                                             </div>
@@ -132,13 +158,21 @@
       // When the button is clicked, show the popup
       $(".edit-btn").click(function(){
         var index = $(".edit-btn").index($(this));
-        console.log(index);
          $(".edit-popup").eq(index).show();
       });
 
       // When the close button is clicked, hide the popup
-      $(".close-edit-popup").click(function(){
+      $(".close-popup").click(function(){
          $(this).closest(".edit-popup").hide();
+         $(this).closest(".media-popup").hide();
+      });
+
+      document.addEventListener('click', function(event) {
+        var target = event.target;
+        if(target.classList.contains('show-media')) {
+            var index = target.getAttribute('id');
+            $('.media-popup').eq(index).show();
+        }
       });
    });
 </script>

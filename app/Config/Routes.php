@@ -37,17 +37,17 @@ $routes->get('/audio', 'Audio::index', ['filter' => 'auth']);
 $routes->get('/video', 'Video::index', ['filter' => 'auth']); 
   
 $routes->post('/ImageUpload', 'Image::imageUpload', ['filter' => 'auth']);
-$routes->get('/DeleteImage', 'Image::delete', ['filter' => 'auth']);
+$routes->get('Image/delete/(:num)', 'Image::delete/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditImage', 'Image::edit', ['filter' => 'auth']);
 $routes->get('/DownloadImage', 'Image::imageDownload', ['filter' => 'auth']);
 
 $routes->post('/AudioUpload', 'Audio::audioUpload', ['filter' => 'auth']);
-$routes->get('/DeleteAudio', 'Audio::delete', ['filter' => 'auth']);
+$routes->get('Audio/delete/(:num)', 'Audio::delete/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditAudio', 'Audio::edit', ['filter' => 'auth']);
 $routes->get('/DownloadAudio', 'Audio::audioDownload', ['filter' => 'auth']);
 
 $routes->post('/VideoUpload', 'Video::videoUpload', ['filter' => 'auth']);
-$routes->get('/DeleteVideo', 'Video::delete', ['filter' => 'auth']);
+$routes->get('Video/delete/(:num)', 'Video::delete/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], '/EditVideo', 'Video::edit', ['filter' => 'auth']);
 $routes->get('/DownloadVideo', 'Video::videoDownload', ['filter' => 'auth']);
 

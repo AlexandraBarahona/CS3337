@@ -70,20 +70,19 @@ class Image extends BaseController
 
             $model->saveImage($imgData);
             
-            return redirect()->to('/image');
+            return redirect()->to(previous_url());
         }
     }
 
-    public function delete() {
+    public function delete($id) {
         helper(['form', 'url', 'upload']);
         $model = new ImageModel();
 
-        $id = $this->request->getVar('id');
         $path = $model->getImagePath($id);
         
         unlink($path);
         $model->deleteImage($id);
 
-        return redirect()->to('/image');
+        return redirect()->to(previous_url());
     }
 }
