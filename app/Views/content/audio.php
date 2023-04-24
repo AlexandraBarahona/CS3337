@@ -95,14 +95,14 @@
                                 <div class="media-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                        <span class="close-popup"  >&times;</span>
+                                        <span class="close-popup" index="<?=$index?>" >&times;</span>
                                             <div class="row">
                                                 <h5>Now Playing: <?=$row->name?></h5>
                                             </div>
                                             
                                         </div>
                                         <div class="card-body">
-                                            <audio class="w-100" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
+                                            <audio class="w-100" id="media<?=$index?>" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                 <div class="edit-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                            <span class="close-popup"  >&times;</span>
+                                            <span class="close-popup" index="<?=$index?>">&times;</span>
                                             <div class="row">
                                                 <h5>Edit Audio</h5>
                                             </div>
@@ -167,9 +167,16 @@
       // Shows the audio player when clicking the name
       document.addEventListener('click', function(event) {
         var target = event.target;
+
+        if(target.classList.contains("close-popup")) {
+            var index = target.getAttribute("index");
+            document.getElementById("media"+index).pause();
+        }
+
         if(target.classList.contains('show-media')) {
             var index = target.getAttribute('id');
             $('.media-popup').eq(index).show();
+            document.getElementById("media"+index).play();
         }
       });
    });

@@ -24,7 +24,7 @@
         </div>
 
 
-        <div class="container col-8 offset-2 pt-5 pb-5">
+        <div class="col-10 offset-1 pt-5 pb-5">
             <div class="card">
                 <div class="card-header">
                     Image Files
@@ -32,8 +32,8 @@
                 <div class="card-body">
                     <div class="card-title">
                         <div class="row border-bottom pb-2">
-                            <div class="col-2"><strong>Icon</strong></div>
-                            <div class="col-4"><strong>Name</strong></div>
+                            <div class="col-1"><strong>Icon</strong></div>
+                            <div class="col-5"><strong>Name</strong></div>
                             <div class="col-4"><strong>Type</strong></div>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                         ?>      
                             <div class="card-data">
                                 <div class="row pb-2">
-                                    <div class="col-2"><embed src="<?php echo base_url('public/images/' . $row->caption); ?>" type="<?php echo $row->type; ?>" width="30px" height="30px" /></div>
-                                    <div class="col-4">
+                                    <div class="col-1"><embed src="<?php echo base_url('public/images/' . $row->caption); ?>" type="<?php echo $row->type; ?>" width="30px" height="30px" /></div>
+                                    <div class="col-5">
                                         <a class="show-media" href="#" id="<?=$index?>"><?php echo $row->name ?></a>
                                     </div>
                                     <div class="col-4"><?php echo $row->type ?></div>
@@ -81,7 +81,7 @@
                                 <div class="edit-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                            <span class="close-edit-popup">&times;</span>
+                                            <span class="close-popup">&times;</span>
                                             <div class="row">
                                                 <h5>Edit Image</h5>
                                             </div>

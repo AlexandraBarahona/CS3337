@@ -50,7 +50,7 @@
                             <div class="media-popup-content">
                                 <div class="card">
                                     <div class="card-header">
-                                    <span class="close-popup"  >&times;</span>
+                                    <span class="close-popup"  index="<?=$index?>">&times;</span>
                                         <div class="row">
                                             <h5><?=$row->name?></h5>
                                         </div>
@@ -58,15 +58,15 @@
                                     <div class="card-body" style="max-height: 60%">
                                         <?php if($row->filetype == 'Image'){ ?>
                                         <div class="embed-responsive">
-                                            <img class="media" src="public/images/<?=$row->caption?>">
+                                            <img class="media" id="media<?=$index?>" src="public/images/<?=$row->caption?>">
                                         </div>
                                          <?php }
                                          if($row->filetype == 'Audio') {?>
-                                            <audio class="w-100" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
+                                            <audio class="w-100" id="media<?=$index?>" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
                                          <?php }
                                          if($row->filetype == 'Video') {?>
                                             <div class="embed-responsive">
-                                                <video class="media" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
+                                                <video class="media" id="media<?=$index?>" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
                                             </div>
                                         <?php } ?>
                                         <p>Description:</p>
@@ -74,13 +74,13 @@
                                 </div>
                             </div>
                         </div> 
-                        
+
                         <!-- HTML for the edit popup -->
                         <div class="edit-popup" id="edit-popup<?=$index?>">
                             <div class="edit-popup-content">
                                 <div class="card">
                                     <div class="card-header">
-                                        <span class="close-popup">&times;</span>
+                                        <span class="close-popup" index="<?=$index?>">&times;</span>
                                         <div class="row">
                                             <h5>Edit File</h5>
                                         </div>
@@ -127,14 +127,26 @@
       // When the close button is clicked, hide the popup
       $(".close-popup").click(function(){
          $(this).closest(".edit-popup").hide();
-         $(this.closest(".media-popup")).hide();
+         $(this).closest(".media-popup").hide();
       });
 
       document.addEventListener('click', function(event) {
         var target = event.target;
+
+        if(target.classList.contains("close-popup")) {
+            var index = target.getAttribute("index");
+            var element = document.getElementById("media"+index);
+            if(element instanceof HTMLVideoElement || element instanceof HTMLAudioElement) {
+                element.pause();
+            }
+        }
         if(target.classList.contains('show-media')) {
             var index = target.getAttribute('id');
             $('.media-popup').eq(index).show();
+            var element = document.getElementById("media"+index);
+            if(element instanceof HTMLVideoElement || element instanceof HTMLAudioElement) {
+                element.play();
+            }
         }
       });
    });

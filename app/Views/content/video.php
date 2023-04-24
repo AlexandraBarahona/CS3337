@@ -94,15 +94,14 @@
                                 <div class="media-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                        <span class="close-popup"  >&times;</span>
+                                        <span class="close-popup" index="<?=$index?>" >&times;</span>
                                             <div class="row">
                                                 <h5>Now Playing: <?=$row->name?></h5>
-                                            </div>
-                                            
+                                            </div>    
                                         </div>
                                         <div class="card-body" style="max-height: 60%">
                                             <div class="embed-responsive">
-                                                <video class="media" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
+                                                <video class="media" id="media<?=$index?>" controls><source src="public/video/<?=$row->caption?>" type="<?=$row->type?>"></video>
                                             </div>
                                             <p>
                                                 Description:
@@ -118,7 +117,7 @@
                                 <div class="edit-popup-content">
                                     <div class="card">
                                         <div class="card-header">
-                                            <span class="close-popup">&times;</span>
+                                            <span class="close-popup" index="<?=$index?>">&times;</span>
                                             <div class="row">
                                                 <h5>Edit Video</h5>
                                             </div>
@@ -138,7 +137,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
+
                         <?php
                             }
                         } else {
@@ -169,9 +169,16 @@
 
       document.addEventListener('click', function(event) {
         var target = event.target;
+
+        if(target.classList.contains('close-popup')) {
+            var index = target.getAttribute("index");
+            document.getElementById("media"+index).pause();
+        }
+
         if(target.classList.contains('show-media')) {
             var index = target.getAttribute('id');
             $('.media-popup').eq(index).show();
+            document.getElementById("media"+index).play();
         }
       });
    });
