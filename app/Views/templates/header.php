@@ -21,6 +21,24 @@
     decided if you want the navbar to be visible    
     $data['showNavbar'] = true; 
 -->
+
+<!-- This script prevents a user from submiting an empty form  -->
+<script>
+    document.addEventListener('submit', function(event) {
+        var target = event.target;
+        var elements = target.elements;
+        for(let i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            var value = element.value.trim();
+            if(value === '' && element.classList.contains('field')) {
+                event.preventDefault();
+            }
+        }     
+        return;
+        
+    });
+</script>
+
 <?php if (isset($showNavbar) && $showNavbar): ?>
     <?php
 $current_page = basename($_SERVER['REQUEST_URI'], ".php");
@@ -50,7 +68,7 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
     </div>
     <form action="<?=base_url()?>/search" method="get">
       <div class="input-group">
-        <input type="text" class="form-control" name="query" placeholder="Search..." aria-label="Search">
+        <input type="search" class="form-control field" name="query" placeholder="Search..." aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
         </div>

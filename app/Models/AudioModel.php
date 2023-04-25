@@ -4,9 +4,10 @@ use CodeIgniter\Model;
 
 class AudioModel extends Model {
     protected $table = 'audio';
-    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at', 'duration'];
-    protected $beforeInsert = ['beforeInsert'];
-    protected $beforeUpdate = ['beforeUpdate'];
+    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 
+                                'updated_at', 'duration', 'note'];
+    // protected $beforeInsert = ['beforeInsert'];
+    // protected $beforeUpdate = ['beforeUpdate'];
     protected $db;
     public function __construct() {
         $this->db = db_connect();
@@ -50,7 +51,7 @@ class AudioModel extends Model {
     }
 
     public function searchAudios($query) {
-        $query = $this->db->escapeString($query);
+        $query = trim($this->db->escapeString($query));
 
         $words = null;
         if(str_contains($query, " ")) {

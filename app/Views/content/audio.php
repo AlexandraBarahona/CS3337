@@ -103,6 +103,9 @@
                                         </div>
                                         <div class="card-body">
                                             <audio class="w-100" id="media<?=$index?>" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
+                                            <hr>
+                                            <h5>Description:</h5>
+                                            <pre><?=$row->note?></pre>
                                         </div>
                                     </div>
                                 </div>
@@ -123,8 +126,11 @@
                                                 <div class="form-group">
                                                     <label for="inputName">Name</label>
                                                     <input type="hidden" name="id" value="<?=$row->id?>">
-                                                    <input type="text" class="form-control" id="inputName" name="name" value="<?=$row->name?>" placeholder="Name">
+                                                    <input type="text" class="form-control field mb-2" id="inputName" name="name" value="<?=$row->name?>" placeholder="Name">
                                                     
+                                                    <label for="inputNote">Description</label>
+                                                    <textarea class="form-control w-100 note" id="inputNote" name="note" wrap="hard" placeholder="Description"><?=$row->note?></textarea>
+
                                                     <div class="row d-flex justify-content-center"> 
                                                         <input type="submit" class="btn btn-info btn-green mt-4 mx-auto">
                                                     </div>  

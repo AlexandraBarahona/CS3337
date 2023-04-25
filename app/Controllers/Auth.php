@@ -37,7 +37,6 @@ class Auth extends BaseController
             else {
                 $model = new UserModel();
                 $user = $model->getUser($this->request->getVar('email'));
-                //$user = $model->where('email', $this->request->getVar('email'))->first();
                 
                 $this->setUserSession($user);
 

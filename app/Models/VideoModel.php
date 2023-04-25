@@ -4,7 +4,8 @@ use CodeIgniter\Model;
 
 class VideoModel extends Model {
     protected $table = 'video';
-    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at', 'duration'];
+    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 
+                                'updated_at', 'duration', 'note'];
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
     protected $db;
@@ -51,7 +52,7 @@ class VideoModel extends Model {
     }
 
     public function searchVideos($query) {
-        $query = $this->db->escapeString($query);
+        $query = trim($this->db->escapeString($query));
 
         $words = null;
         if(str_contains($query, " ")) {

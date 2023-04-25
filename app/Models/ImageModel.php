@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class ImageModel extends Model {
     protected $table = 'images';
-    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at'];
+    protected $allowedFields = ['id', 'name', 'type', 'path', 'caption', 'updated_at', 'note'];
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
     protected $db;
@@ -54,7 +54,7 @@ class ImageModel extends Model {
     }
 
     public function searchImages($query) {
-        $query = $this->db->escapeString($query);
+        $query = trim($this->db->escapeString($query));
 
         $words = null;
         if(str_contains($query, " ")) {

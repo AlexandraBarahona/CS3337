@@ -75,6 +75,7 @@ class Audio extends BaseController
                 'id' => $this->request->getPost('id'),
                 'name' => $this->request->getPost('name'),
                 'updated_at' => date('Y-m-d H:i:s', now()),
+                'note' => $this->request->getPost('note'),
             ];
 
             $model->saveAudio($audData);
