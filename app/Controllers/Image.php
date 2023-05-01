@@ -12,7 +12,7 @@ class Image extends BaseController
     {
         $model = new ImageModel();
         $data = [];
-        $data['title'] = 'Images';
+        $data['title'] = 'Image';
         $data['showNavbar'] = true;
         $files['images'] = $model->getAllByName() ;
         echo view('templates/header', $data);
@@ -80,8 +80,9 @@ class Image extends BaseController
         $model = new ImageModel();
 
         $path = $model->getImagePath($id);
+        if(isset($path) && file_exists($path))
+            unlink($path);
         
-        unlink($path);
         $model->deleteImage($id);
 
         return redirect()->to(previous_url());

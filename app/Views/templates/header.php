@@ -16,11 +16,6 @@
     <title><?php echo $title; ?></title>
 </head>
 <body>
-<!-- Dylan- I Added the navbar into the header file to remove clutter from view pages. 
-    By adding the following line to the index function of each controller it can be 
-    decided if you want the navbar to be visible    
-    $data['showNavbar'] = true; 
--->
 
 <!-- This script prevents a user from submiting an empty form  -->
 <script>
@@ -37,7 +32,34 @@
         return;
         
     });
+
+    document.addEventListener('click', function(event) {
+        var target = event.target;
+        if(target.classList.contains('home-icon')) {
+            location.assign('<?=base_url('home')?>');
+      }
+    });
 </script>
+
+<?php if($title == 'Home') {
+    ?> <script src='public/javascript/views/home.js'></script>
+<?php } if($title == 'Image') { 
+    ?> <script src='public/javascript/views/image.js'></script>
+<?php } if($title == 'Audio') { 
+    ?> <script src='public/javascript/views/audio.js'></script>
+<?php } if($title == 'Video') { 
+    ?> <script src='public/javascript/views/video.js'></script>
+<?php } if($title == 'Search Results') { 
+    ?> <script src='public/javascript/views/search.js'></script>
+<?php } ?>
+    
+
+
+<!-- Dylan- I Added the navbar into the header file to remove clutter from view pages. 
+    By adding the following line to the index function of each controller it can be 
+    decided if you want the navbar to be visible    
+    $data['showNavbar'] = true; 
+-->
 
 <?php if (isset($showNavbar) && $showNavbar): ?>
     <?php
@@ -49,7 +71,7 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <img src="public/cat.png" alt="Cat" style="width: 70px; height: auto;">
+    <img class="home-icon" src="public/cat.png" alt="Cat" style="width: 70px; height: auto;">
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto ">
             <li class="nav-item <?php if($current_page == 'home') {echo 'active';} ?>">

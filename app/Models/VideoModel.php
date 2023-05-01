@@ -48,7 +48,7 @@ class VideoModel extends Model {
         parent::__construct();
 
         $video = $this->where('id', $id)->first();
-        return $video['path'];
+        return (isset($video)) ? $video['path'] : null;
     }
 
     public function searchVideos($query) {
@@ -63,8 +63,13 @@ class VideoModel extends Model {
                      " WHERE name LIKE '%" . $query . "%'" ;
 
         if(!empty($words)) {
-            foreach($words as $word)
-            $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+            foreach($words as $word) {
+                if(trim($word) == '') {
+                    continue;
+                }
+                $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+            }
+            
         }
 
         $sqlQuery = $sqlQuery . ';';

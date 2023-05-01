@@ -83,8 +83,9 @@ class Video extends BaseController
         $model = new VideoModel();
 
         $path = $model->getVideoPath($id);
-
-        unlink($path);
+        if(isset($path) && file_exists($path))
+            unlink($path);
+            
         $model->deleteVideo($id);
 
         return redirect()->to(previous_url());

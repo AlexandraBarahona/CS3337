@@ -5,52 +5,6 @@
                 <form action="<?php echo base_url(); ?>/AudioUpload" method="post" class="dropzone" id="audioupload">
                 <input type="hidden" id="fileDuration" name="fileDuration" value="">
                 </form>
-
-                <script type="text/javascript">
-                    Dropzone.options.audioupload = {
-                        paramName: "file",
-                        maxFilesize: 100,
-                        maxFiles: 1,
-                        addRemoveLinks: true,
-                        dictRemoveFile: "Remove",
-                        dictCancelUpload: "Cancel",
-                        dictDefaultMessage: "Drop files here to upload",
-                        acceptedFiles: "audio/*, .webm",
-                        autoProcessQueue: false,
-                        init: function () {
-                            var dropzoneInstance = this;
-                            this.on("addedfile", function(file) {
-                                
-                                var audioElement = new Audio();
-                                audioElement.src = URL.createObjectURL(file);
-                                var fileDuration = 0; // Set initial duration to 0
-
-                                audioElement.addEventListener('error', function() {
-                                    // I use this just in case the user uploads an empty file
-                                    // or a file that has the correct extension but not in the
-                                    // correct format
-                                    fileDuration = audioElement.duration || 0;
-                                    console.log("element error");
-                                    
-                                    document.getElementById("fileDuration").value = fileDuration;
-                                    dropzoneInstance.processQueue(); 
-                                });
-
-                                audioElement.addEventListener('loadedmetadata', function() {
-                                    // getting the duration of the file
-                                    fileDuration = audioElement.duration || 0;
-                                    
-                                    document.getElementById("fileDuration").value = fileDuration;
-                                    dropzoneInstance.processQueue();    
-                                });
-                            }); 
-
-
-                            this.on("success", function (file) {
-                                location.reload();});
-                        }
-                    };
-                </script>
             </div>
         </div>
 
@@ -79,7 +33,7 @@
                                 <div class="row pb-2">
                                     <div class="col-1"><embed src="<?php echo base_url('public/audio/icon.png'); ?>" type="image/png" width="30px" height="30px" /></div>
                                     <div class="col-5">
-                                        <a class="show-media" id="<?=$index?>" href="#"><?php echo $row->name ?></a> 
+                                        <a class="show-media link-primary" id="<?=$index?>" href="#"><?=htmlspecialchars($row->name)?></a> 
                                     </div>
                                     <div class="col-2"><?=$row->duration?></div>
                                     <div class="col-2"><?php echo $row->type ?></div>
@@ -97,7 +51,7 @@
                                         <div class="card-header">
                                         <span class="close-popup" index="<?=$index?>" >&times;</span>
                                             <div class="row">
-                                                <h5>Now Playing: <?=$row->name?></h5>
+                                                <h5><?=htmlspecialchars($row->name)?></h5>
                                             </div>
                                             
                                         </div>
@@ -105,7 +59,7 @@
                                             <audio class="w-100" id="media<?=$index?>" controls><source src="public/audio/<?=$row->caption?>" type="<?=$row->type?>"></audio>
                                             <hr>
                                             <h5>Description:</h5>
-                                            <pre><?=$row->note?></pre>
+                                            <pre><?=htmlspecialchars($row->note)?></pre>
                                         </div>
                                     </div>
                                 </div>
@@ -126,13 +80,13 @@
                                                 <div class="form-group">
                                                     <label for="inputName">Name</label>
                                                     <input type="hidden" name="id" value="<?=$row->id?>">
-                                                    <input type="text" class="form-control field mb-2" id="inputName" name="name" value="<?=$row->name?>" placeholder="Name">
+                                                    <input type="text" class="form-control field mb-2" id="inputName" name="name" value="<?=htmlspecialchars($row->name)?>" placeholder="Name">
                                                     
                                                     <label for="inputNote">Description</label>
-                                                    <textarea class="form-control w-100 note" id="inputNote" name="note" wrap="hard" placeholder="Description"><?=$row->note?></textarea>
+                                                    <textarea class="form-control w-100 note" id="inputNote" name="note" wrap="hard" placeholder="Description"><?=htmlspecialchars($row->note)?></textarea>
 
                                                     <div class="row d-flex justify-content-center"> 
-                                                        <input type="submit" class="btn btn-info btn-green mt-4 mx-auto">
+                                                        <input type="submit" value="Save" class="btn btn-info btn-green mt-4 mx-auto">
                                                     </div>  
                                                 </div>
                                             </form>
@@ -154,36 +108,3 @@
     </div>
 </section>
 
-<!-- Javascript for edit popup -->
-<script>
-  $(document).ready(function(){
-      // When the button is clicked, show the popup
-      $(".edit-btn").click(function(){
-        var index = $(".edit-btn").index($(this));
-        console.log(index);
-         $(".edit-popup").eq(index).show();
-      });
-
-      // When the close button is clicked, hide the popup
-      $(".close-popup").click(function(){
-         $(this).closest(".edit-popup").hide();
-         $(this.closest(".media-popup")).hide();
-      });
-
-      // Shows the audio player when clicking the name
-      document.addEventListener('click', function(event) {
-        var target = event.target;
-
-        if(target.classList.contains("close-popup")) {
-            var index = target.getAttribute("index");
-            document.getElementById("media"+index).pause();
-        }
-
-        if(target.classList.contains('show-media')) {
-            var index = target.getAttribute('id');
-            $('.media-popup').eq(index).show();
-            document.getElementById("media"+index).play();
-        }
-      });
-   });
-</script>

@@ -90,8 +90,9 @@ class Audio extends BaseController
         $model = new AudioModel();
 
         $path = $model->getAudioPath($id);
-        
-        unlink($path);
+        if(isset($path) && file_exists($path))
+            unlink($path);
+            
         $model->deleteAudio($id);
 
         return redirect()->to(previous_url());

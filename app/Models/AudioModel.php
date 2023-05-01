@@ -47,7 +47,7 @@ class AudioModel extends Model {
         parent::__construct();  
         
         $audio = $this->where('id', $id)->first();
-        return $audio['path'];
+        return (isset($audio)) ? $audio['path'] : null;
     }
 
     public function searchAudios($query) {
@@ -62,8 +62,13 @@ class AudioModel extends Model {
                      " WHERE name LIKE '%" . $query . "%'" ;
 
         if(!empty($words)) {
-            foreach($words as $word)
-            $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+            foreach($words as $word) {
+                if(trim($word) == '') {
+                    continue;
+                }    
+                $sqlQuery = $sqlQuery . " OR name LIKE '%". $word . "%'"; 
+
+            }
         }
 
         $sqlQuery = $sqlQuery . ';';

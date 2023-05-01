@@ -3,7 +3,7 @@
         <div class="container col-10 offset-1 pt-5 pb-10">
         <div class="card">
             <div class="card-header">
-                Files related to '<?=$query?>'
+                Files related to '<?=htmlspecialchars($query)?>'
             </div>
             <div class="card-body">
                 <div class="card-title">
@@ -33,7 +33,7 @@
                             <div class="row pb-2">
                                 <div class="col-1"><embed src="<?=$fileData['icon']?>" type="<?=$fileData['iconType']?>" width="30px" height="30px" /></div>
                                 <div class="col-5">
-                                    <a class="show-media" href="#" id="<?=$index?>"><?php echo $row->name ?></a>
+                                    <a class="show-media link-primary" href="#" id="<?=$index?>"><?=htmlspecialchars($row->name) ?></a>
                                 </div>
                                 <div class="col-2"><?=$row->duration?></div>
                                 <div class="col-2"><?php echo $row->type ?></div>
@@ -52,7 +52,7 @@
                                     <div class="card-header">
                                     <span class="close-popup"  index="<?=$index?>">&times;</span>
                                         <div class="row">
-                                            <h5><?=$row->name?></h5>
+                                            <h5><?=htmlspecialchars($row->name)?></h5>
                                         </div>
                                     </div>
                                     <div class="card-body" style="max-height: 60%">
@@ -71,7 +71,7 @@
                                         <?php } ?>
                                         <hr>
                                         <h5>Description:</h5>
-                                        <pre><?=$row->note?></pre>
+                                        <pre><?=htmlspecialchars($row->note)?></pre>
                                     </div>
                                 </div>
                             </div>
@@ -92,13 +92,13 @@
                                             <div class="form-group">
                                                 <label for="inputName">Name</label>
                                                 <input type="hidden" name="id" value="<?=$row->id?>">
-                                                <input type="text" class="form-control field" id="inputName" name="name" value="<?=$row->name?>" placeholder="Name">
+                                                <input type="text" class="form-control field" id="inputName" name="name" value="<?=htmlspecialchars($row->name)?>" placeholder="Name">
                                                 
                                                 <label for="inputNote">Description</label>
-                                                <textarea class="form-control w-100 note" id="inputNote" name="note" wrap="hard" placeholder="Description"><?=$row->note?></textarea>
+                                                <textarea class="form-control w-100 note" id="inputNote" name="note" wrap="hard" placeholder="Description"><?=htmlspecialchars($row->note)?></textarea>
 
                                                 <div class="row d-flex justify-content-center"> 
-                                                    <input type="submit" class="btn btn-info btn-green mt-4 mx-auto">
+                                                    <input type="submit" value="Save" class="btn btn-info btn-green mt-4 mx-auto">
                                                 </div>  
                                             </div>
                                         </form>
@@ -120,39 +120,3 @@
     </div>
 </section>
 
-<!-- Javascript for edit popup -->
-<script>
-  $(document).ready(function(){
-      // When the button is clicked, show the popup
-      $(".edit-btn").click(function(){
-        var index = $(".edit-btn").index($(this));
-         $(".edit-popup").eq(index).show();
-      });
-
-      // When the close button is clicked, hide the popup
-      $(".close-popup").click(function(){
-         $(this).closest(".edit-popup").hide();
-         $(this).closest(".media-popup").hide();
-      });
-
-      document.addEventListener('click', function(event) {
-        var target = event.target;
-
-        if(target.classList.contains("close-popup")) {
-            var index = target.getAttribute("index");
-            var element = document.getElementById("media"+index);
-            if(element instanceof HTMLVideoElement || element instanceof HTMLAudioElement) {
-                element.pause();
-            }
-        }
-        if(target.classList.contains('show-media')) {
-            var index = target.getAttribute('id');
-            $('.media-popup').eq(index).show();
-            var element = document.getElementById("media"+index);
-            if(element instanceof HTMLVideoElement || element instanceof HTMLAudioElement) {
-                element.play();
-            }
-        }
-      });
-   });
-</script>
