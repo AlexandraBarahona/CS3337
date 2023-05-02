@@ -71,6 +71,7 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <h1> POUNCE </h1>
     <img class="home-icon" src="public/cat.png" alt="Cat" style="width: 70px; height: auto;">
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto ">

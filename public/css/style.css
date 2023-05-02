@@ -1,199 +1,254 @@
+/* change font of everything */
+* {
+  font-family: "Pt Sans", sans-serif;
+}
+/* Changes style of "Sign In" "Login" and "Pounce" on login screen */
+h4{
+  font-family: "Pt Sans narrow", sans-serif;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #a61f8d;
+
+}
+/* Changes style of "Pounce" in navbar */
+h1{
+  margin-right: 20px;
+  font-family: "Pt Sans narrow", sans-serif;
+  font-weight: bold;
+  color: #cbf8fe;
+
+}
 /* BG colors of login and registration page */
+
 
 .gradient-custom {
   
-  background: #3b5323;
+    /* background: #3b5323; */
+  
+    background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+  
+    background: linear-gradient(to right, #e87eed, #08b6cd);
+    height: 100%;
+  }
+  /* BG colors of home/media pages */
+  #home {
+    /* position: absolute; */
+    padding-bottom: 50px;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:auto;
+    background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+  
+    background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+  }
+  
+  #home::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
+  #auth {
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:auto
+  }
+  
+  .navbar-light {
+    background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+  
+    background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+  }
+  footer{
+    background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+  
+    background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
+  }
+  
+  
+  /* NavBar Fonts */
+  .navbar-nav .nav-link {
+    font-size: 20px; /* set the font size */
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    color: white; 
+  }
+  .navbar-nav .active > .nav-link {
+    font-weight: bold;
+    /* text-decoration: underline; */
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    color: #a1d4f6; 
+    font-size: 22px; /* set the font size */
 
-  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
+  }
+  
+  .home-icon:hover {
+    cursor: pointer;
+  }
+  
+  /* Change color of buttons (must be declared as btn-green) */
+  .btn-green {
+    background: linear-gradient(to right, #e87eed, #08b6cd);
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 200px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-primary {
+    background-color: #e87eed ;
+    border-color:#0e6772
+  }
+  
+  .dropzone .dz-preview .dz-error-message {
+    top: 150px!important;
+  }
+  
+  
+  /* Footer settings */
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    height: 40px;
+    line-height: 50px;
+    max-height: 100px;
+  }
+  
+  .link-primary {
+    text-decoration: none;
+  }
+  
+  /* Upload box background colors */
+  
+  #videoupload {
+    background: linear-gradient(to right, #f8defa, #c9f2f7);
+  }
+  #imageupload {
+    background: linear-gradient(to right, #f8defa, #c9f2f7);
+  }
+  #audioupload {
+    background: linear-gradient(to right, #f8defa, #c9f2f7);
+  }
+  /* Card Settings */
+  .card-data-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .card-data-container {
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden;
+  }
+  
+  .form-control {
+    white-space: nowrap;
+  }
+  .form-container {
+    background: linear-gradient(to right, #f8defa, #c9f2f7);
+  }
+  .card{
 
-  background: linear-gradient(to right, #e87eed, #08b6cd);
-  height: 100%;
-}
-/* BG colors of home/media pages */
-#home {
-  /* position: absolute; */
-  padding-bottom: 50px;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  overflow:auto;
-  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
-
-  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
-}
-
-#home::-webkit-scrollbar {
-  display: none;
-}
-
-
-#auth {
-  position: absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  overflow:auto
-}
-
-.navbar-light {
-  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
-
-  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
-}
-footer{
-  background: -webkit-linear-gradient(to right, #e87eed, #08b6cd);
-
-  background: linear-gradient(to right, #e87eed, #08b6cd);  height: 100%;
-}
-
-
-/* NavBar Fonts */
-.navbar-nav .nav-link {
-  font-size: 20px; /* set the font size */
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-  color: white; 
-}
-.navbar-nav .active > .nav-link {
-  /* font-weight: bold; */
-  /* text-decoration: underline; */
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-  color: rgb(233, 243, 37); 
-
-}
-
-.home-icon:hover {
-  cursor: pointer;
-}
-
-/* Change color of buttons (must be declared as btn-green) */
-.btn-green {
-  background: linear-gradient(to right, #e87eed, #08b6cd);
-  color: #fff;
-  border-radius: 50px;
-  padding: 10px 20px;
-  font-size: 18px;
-  width: 200px;
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-
-.dropzone .dz-preview .dz-error-message {
-  top: 150px!important;
-}
-
-
-/* Footer settings */
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  height: 40px;
-  line-height: 50px;
-  max-height: 100px;
-}
-
-.link-primary {
-  text-decoration: none;
-}
-
-/* Card Settings */
-.card-data-container::-webkit-scrollbar {
-  display: none;
-}
-
-.card-data-container {
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden;
-}
-
-.form-control {
-  white-space: nowrap;
-}
-
-
-/*
-  Edit card settings
-*/
-
-.edit-popup {
-  display: none;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.note {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  height: 100px;
-}
-
-.edit-popup::-webkit-scrollbar {
-  display: none;
-}
-
-.edit-popup-content {
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  width: 50%;
-}
-
-
-/* Media popup */
-
-.media-popup {
-  display: none;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.media-popup-content {
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  width: 50%;
-}
-
-.media{
-  width: 100%;
-  max-height: 80vh;
-}
-
-/* Close button */
-
-.close-popup {
-  color: #aaa;
-  float: right;
-  text-decoration: none;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-popup:hover,
-.close-popup:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
+  }
+  .card-body {
+    padding: 20px;
+    background: linear-gradient(to right, #f8defa, #c9f2f7);
+    /* border: 1px solid #80ded4; */
+    border-radius: .25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(128, 164, 199, 0.55);
+  }
+  .card-header {
+    background: linear-gradient(to right, #d52dde, #15abbe);
+    color: white;
+    font-weight: bold;
+  }
+  
+  /*
+    Edit card settings
+  */
+  
+  .edit-popup {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .note {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    height: 100px;
+  }
+  
+  .edit-popup::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .edit-popup-content {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 50%;
+  }
+  
+  
+  /* Media popup */
+  
+  .media-popup {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .media-popup-content {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 50%;
+  }
+  
+  .media{
+    width: 100%;
+    max-height: 80vh;
+  }
+  
+  /* Close button */
+  
+  .close-popup {
+    color: #aaa;
+    float: right;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-popup:hover,
+  .close-popup:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  
+  
